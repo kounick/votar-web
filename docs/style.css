@@ -1,0 +1,40 @@
+/* VotAR web. Look repris de l'application Android : fond sombre, quatre barres, deux boutons. */
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: #000; color: #ccc;
+  font: 16px/1.4 -apple-system, system-ui, "Segoe UI", Roboto, sans-serif; }
+body { padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }
+
+#app { height: 100%; display: flex; flex-direction: column; }
+#stage { position: relative; flex: 1 1 auto; min-height: 0; background: #111;
+  display: flex; align-items: center; justify-content: center; overflow: hidden; }
+#photo { display: none; max-width: 100%; max-height: 100%; object-fit: contain; }
+#stage.has-photo #photo { display: block; }
+#intro { margin: 0; padding: 16px; font-size: 18px; cursor: pointer; }
+#stage.has-photo #intro { display: none; }
+
+#controls { flex: 0 0 auto; padding: 10px 12px 12px; border-top: 2px solid #808080; background: #000; }
+.row { display: flex; align-items: center; gap: 10px; margin: 6px 0; }
+.label { width: 3.2em; font-weight: 600; color: #fff; font-variant-numeric: tabular-nums; }
+.bar { flex: 1; height: 26px; background: #000; border: 1px solid #555; border-radius: 3px; overflow: hidden; }
+.fill { height: 100%; width: 0; transition: width .35s ease; }
+
+#status { min-height: 1.4em; margin: 8px 0 6px; font-size: 14px; color: #bbb; }
+#status.error { color: #ff8a80; }
+
+#buttons { display: flex; gap: 10px; }
+.button { flex: 1; position: relative; display: flex; align-items: center; justify-content: center;
+  min-height: 52px; padding: 0 12px; background: #2a2a2a; border: 1px solid #666; border-radius: 6px;
+  color: #fff; font-weight: 600; cursor: pointer; user-select: none; -webkit-user-select: none; }
+.button:active { background: #3a3a3a; }
+.button input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; font-size: 0; }
+body.busy .button { opacity: .5; pointer-events: none; }
+
+#credits { margin: 12px 0 0; font-size: 12px; color: #888; }
+#credits a { color: #9ab; }
+
+/* Paysage : photo à gauche, commandes à droite, comme sur Android */
+@media (orientation: landscape) and (max-height: 520px) {
+  #app { flex-direction: row; }
+  #controls { width: min(46vw, 360px); border-top: 0; border-left: 2px solid #808080; overflow-y: auto; }
+}

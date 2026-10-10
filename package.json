@@ -1,0 +1,9 @@
+{
+  "name": "votar-web",
+  "private": true,
+  "type": "module",
+  "description": "Outils de test de VotAR web. Le site lui-même (app/) n'a aucune dépendance.",
+  "devDependencies": {
+    "playwright-core": "1.49.1"
+  }
+}
